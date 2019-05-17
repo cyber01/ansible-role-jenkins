@@ -11,16 +11,16 @@
     name: Jenkins-stable
     description: Jenkins Yum repo
     baseurl: http://pkg.jenkins.io/redhat-stable
-    gpgcheck: yes
-    enabled: yes
+    gpgcheck: true
+    enabled: true
 
 - name: Install Jenkins key
   rpm_key:
     state: present
-    key: https://jenkins-ci.org/redhat/jenkins-ci.org.key 
+    key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
 
 - name: Install Jenkins
-  yum: 
+  yum:
     name: jenkins
     state: installed
 
@@ -28,7 +28,7 @@
   systemd:
     name: jenkins
     state: started
-    enabled: yes
+    enabled: true
 
 - name: "Check if firewalld is installed"
   package_facts:
@@ -46,6 +46,7 @@
 - name: Find Jenkins install key
   shell: grep -e '[^\ ]\{32,\}' /var/lib/jenkins/secrets/initialAdminPassword
   register: jenkins_install_key
+  hanged_when: false
 
 - name: Print Jenkins install key
   debug:
