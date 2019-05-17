@@ -9,6 +9,11 @@ env:
     - ROLE_NAME: jenkins
   matrix:
     - MOLECULE_DISTRO: centos-7
+    - MOLECULE_DISTRO: fedora-29
+    - MOLECULE_DISTRO: fedora-28
+    - MOLECULE_DISTRO: fedora-27
+    - MOLECULE_DISTRO: fedora-26
+    - MOLECULE_DISTRO: fedora-25
       MOLECULE_DOCKER_COMMAND: /usr/lib/systemd/systemd
 
 

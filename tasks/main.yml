@@ -44,10 +44,4 @@
   when: ansible_jenkins_open_port and 'firewalld' in ansible_facts.packages
 
 - name: Find Jenkins install key
-  shell: grep -e '[^\ ]\{32,\}' /var/lib/jenkins/secrets/initialAdminPassword
-  register: jenkins_install_key
-  changed_when: false
-
-- name: Print Jenkins install key
-  debug:
-    var: jenkins_install_key.stdout
+  debug: msg="Jenkins install key is {{ lookup('file', '/var/lib/jenkins/secrets/initialAdminPassword') }}"
