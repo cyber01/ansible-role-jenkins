@@ -43,6 +43,9 @@
   notify: reload firewalld
   when: ansible_jenkins_open_port | bool and 'firewalld' in ansible_facts.packages
 
+- name: Wait 1 minute until jenkins starts
+  pause:
+    minutes: 1
+
 - name: Find Jenkins install key
   debug: msg="Jenkins install key is {{ lookup('file', '/var/lib/jenkins/secrets/initialAdminPassword') }}"
-  become: true
