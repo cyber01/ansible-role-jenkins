@@ -33,7 +33,7 @@
 - name: "Check if firewalld is installed"
   package_facts:
     manager: "auto"
-  when: ansible_jenkins_open_port
+  when: ansible_jenkins_open_port | bool
 
 - name: Allow jenkins TCP in firewalld
   firewalld:
@@ -41,7 +41,8 @@
     permanent: true
     state: enabled
   notify: reload firewalld
-  when: ansible_jenkins_open_port and 'firewalld' in ansible_facts.packages
+  when: ansible_jenkins_open_port | bool and 'firewalld' in ansible_facts.packages
 
 - name: Find Jenkins install key
   debug: msg="Jenkins install key is {{ lookup('file', '/var/lib/jenkins/secrets/initialAdminPassword') }}"
+  become: true
