@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  vars:
+    ansible_jenkins_java: "1.8.0"
+    ansible_jenkins_port: "8080"
+    ansible_jenkins_open_port: true
+
+  roles:
+    - role: cyber01.jenkins

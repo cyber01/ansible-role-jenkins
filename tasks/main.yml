@@ -1,0 +1,52 @@
+---
+# tasks file for ansible-role-jenkins
+
+- name: Java JDK install
+  yum:
+    name: java-{{ ansible_jenkins_java }}-openjdk
+    state: installed
+
+- name: Install repo Jenkins
+  yum_repository:
+    name: Jenkins-stable
+    description: Jenkins Yum repo
+    baseurl: http://pkg.jenkins.io/redhat-stable
+    gpgcheck: yes
+    enabled: yes
+
+- name: Install Jenkins key
+  rpm_key:
+    state: present
+    key: https://jenkins-ci.org/redhat/jenkins-ci.org.key 
+
+- name: Install Jenkins
+  yum: 
+    name: jenkins
+    state: installed
+
+- name: Start jenkins
+  systemd:
+    name: jenkins
+    state: started
+    enabled: yes
+
+- name: "Check if firewalld is installed"
+  package_facts:
+    manager: "auto"
+  when: ansible_jenkins_open_port
+
+- name: Allow jenkins TCP in firewalld
+  firewalld:
+    port: "{{ ansible_jenkins_port }}/tcp"
+    permanent: true
+    state: enabled
+  notify: reload firewalld
+  when: ansible_jenkins_open_port and 'firewalld' in ansible_facts.packages
+
+- name: Find Jenkins install key
+  shell: grep -e '[^\ ]\{32,\}' /var/lib/jenkins/secrets/initialAdminPassword
+  register: jenkins_install_key
+
+- name: Print Jenkins install key
+  debug:
+    var: jenkins_install_key.stdout

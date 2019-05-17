@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  author: Sergey Brovko
+  description: Installs jenkins
+  issue_tracker_url: https://github.com/cyber01/ansible-role-jenkins
+  license: license (BSD, MIT)
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Fedora
+      versions:
+        - 27
+
+  galaxy_tags:
+    - jenkins
+    - ci
+    - build
+    - packaging
+    - development
+
+dependencies: []
+allow_duplicates: true

@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-jenkins
+# Java JDK version 1.8.0 (Java 8) or 11 (Java 11)
+ansible_jenkins_java: "1.8.0"
+ansible_jenkins_port: "8080"
+ansible_jenkins_open_port: true
