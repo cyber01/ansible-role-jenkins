@@ -46,7 +46,7 @@
 - name: Find Jenkins install key
   shell: grep -e '[^\ ]\{32,\}' /var/lib/jenkins/secrets/initialAdminPassword
   register: jenkins_install_key
-  hanged_when: false
+  changed_when: false
 
 - name: Print Jenkins install key
   debug:
