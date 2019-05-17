@@ -8,7 +8,7 @@ env:
   global:
     - ROLE_NAME: jenkins
   matrix:
-    - MOLECULE_DISTRO: centos7
+    - MOLECULE_DISTRO: centos-7
       MOLECULE_DOCKER_COMMAND: /usr/lib/systemd/systemd
 
 
@@ -31,7 +31,7 @@ before_script:
 script:
   - molecule --version
   - ansible --version
-  - molecule test
+  - molecule test --all
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
