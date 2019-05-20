@@ -23,12 +23,12 @@ env:
 
 
 install:
-  - pip install ansible
-  - pip install ansible-lint
-  - pip install docker
-  - pip install molecule
-  - pip install netaddr
-  - pip install testinfra
+  - pip install --upgrade ansible
+  - pip install --upgrade ansible-lint
+  - pip install --upgrade docker
+  - pip install --upgrade molecule
+  - pip install --upgrade netaddr
+  - pip install --upgrade testinfra
 
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
