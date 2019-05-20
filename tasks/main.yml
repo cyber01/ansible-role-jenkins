@@ -1,11 +1,5 @@
 ---
 # tasks file for ansible-role-jenkins
-
-- name: Java JDK install
-  yum:
-    name: java-{{ ansible_jenkins_java }}-openjdk
-    state: installed
-
 - name: Install repo Jenkins
   yum_repository:
     name: Jenkins-stable

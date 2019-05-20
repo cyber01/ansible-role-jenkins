@@ -6,3 +6,4 @@
 
   roles:
     - cyber01.jenkins
+    - cyber01.java
