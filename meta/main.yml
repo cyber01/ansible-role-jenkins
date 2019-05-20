@@ -2,6 +2,7 @@
 galaxy_info:
   author: Sergey Brovko
   description: Installs jenkins
+  role_name: jenkins
   issue_tracker_url: https://github.com/cyber01/ansible-role-jenkins
   license: license (BSD, MIT)
   min_ansible_version: 2.4
