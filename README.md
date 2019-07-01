@@ -1,40 +1,22 @@
-# Ansible Role: Memcached
+# Ansible Role: Jenkins
 
-Installs and configures memcached server
+Installs and configures Jenkins
 
 ## Requirements
+
+    Java (dependency)
 
 ## Role Variables
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-    ansible_memcached_port: "11211"
+    ansible_jenkins_port: "8080"
 
-Sets port for memcached.
+Needs for firewalld
 
-    ansible_memcached_user: "memcached"
+    ansible_jenkins_open_port: true
 
-Sets user for memcached.
-
-    ansible_memcached_max_conn: "1024"   
-
-Sets max connections count per memcached instance.
-
-    ansible_memcached_cache_size: "64"
-
-Sets cache size for memcached. In MB.
-
-    ansible_memcached_listen_ip: "127.0.0.1"
-
-Sets IP for listen.
-
-    ansible_memcached_options: "-l {{ ansible_memcached_listen_ip }}"
-
-Sets options, by default only `listen` directive.
-
-    ansible_memcached_open_port: false
-
-Allow remote connections to memcached. Work only if `ansible_memcached_open_port` is not `127.0.0.1` and `firewalld` is installed. Opens both TCP and UDP.
+Allow remote connections to jenkins. Work only if `ansible_jenkins_open_port` and `firewalld` is installed.
 
 ## Dependencies
 
@@ -43,7 +25,7 @@ Allow remote connections to memcached. Work only if `ansible_memcached_open_port
 
     - hosts: servers
       roles:
-        - cyber01.ansible-role-memcached
+        - cyber01.ansible-role-jenkins
 
 
 ## License
